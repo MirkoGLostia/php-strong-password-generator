@@ -5,18 +5,48 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
-    <link rel="stylesheet" href="styles/general.css">
     <link rel="shortcut icon" href="#">
-    <title>Hotel check</title>
+    <title>Random password</title>
 
     <!-- database -->
     <?php
+
+    $lenghtPsw = (int)$_GET["numberCharacters"];
+
+    echo var_dump($lenghtPsw);
+
+    $length = base64_encode(random_bytes($lenghtPsw));
+
+    $randomNumber = rand(0, 9);
+
+    $randomUpperCase = chr(rand(65,90));
+
+    $randomLowerCase = chr(rand(97,122));
+
+    $password = $length;
+
     ?>
 
 </head>
 <body>
 
-    
+    <main>
+        <form method="get">
+            <label for="numberCharacters">lenght of password: </label>
+            <input type="number" name="numberCharacters" id="numberCharacters" size="5" min="1" max="50" value="1"> <!-- il value per forzare un valore iniziale -->
+            <button type="submit">GENERATE</button>
+        </form>
+
+        <section>
+            <div>
+                <span>
+                    <?php
+                        echo $password
+                    ?>
+                </span>
+            </div>
+        </section>
+    </main>
 
 </body>
 </html>
