@@ -15,15 +15,37 @@
 
     echo var_dump($lenghtPsw);
 
-    $length = base64_encode(random_bytes($lenghtPsw));
+    function RandomPassword($arg1) {
 
-    $randomNumber = rand(0, 9);
+        $symbols = '!@#$%&';
+    
+        $randomNumber = "";
 
-    $randomUpperCase = chr(rand(65,90));
+        $randomUpperCase = "";
 
-    $randomLowerCase = chr(rand(97,122));
+        $randomLowerCase = "";
+    
+        for ($i = 0; $i < $arg1; $i++) {
 
-    $password = $length;
+            $randomNumber .= rand(0, 9);
+
+            $randomUpperCase .= chr(rand(65,90));
+
+            $randomLowerCase .= chr(rand(97,122));
+        }
+        
+        $containerAllChar = $symbols . $randomNumber . $randomUpperCase . $randomLowerCase;
+        
+        $shufleContainer = str_shuffle($containerAllChar);
+
+        $result = substr($shufleContainer, 0, $arg1);
+    
+        return $result;
+    }
+
+    $password = RandomPassword($lenghtPsw);
+
+    echo var_dump($password);
 
     ?>
 
